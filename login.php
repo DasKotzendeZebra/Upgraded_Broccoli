@@ -1,10 +1,10 @@
 <?php
+    SESSION_START();
 	define('DB_NAME', 'db116074_58'); //Datenbank-Logindaten
 	define('DB_USER', 'db116074_58'); //Datenbank-Logindaten
 	define('DB_PASSWORD', 'Einstein1234'); //Datenbank-Logindaten
 	define('DB_HOST', 'mysql5.istation.de'); //Datenbank-Host
 
-    SESSION_START();
 	
     $conn = new mysqli (DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) or die ('Error connecting to mysql');
     mysqli_query($conn,"SET NAMES 'utf8'");
@@ -23,7 +23,7 @@
 <?
 	if (!empty($_POST["submit"])) {
 		$_username = mysqli_real_escape_string($conn,$_POST["username"]);
-		$_passwort = $_POST["passwort"];
+		$_passwort = hash('sha1',$_POST["passwort"]);
 		
 		$_sql = "SELECT * FROM User WHERE
 					user_name='$_username' AND
@@ -46,7 +46,7 @@
 		} else {
 echo <<<FORMULAR
 <h3>Login<a href="registrieren.php">NEUE REGISTRIERUNG</a></h3>
-		<form action="login.php" method="post">
+		<form action="login.php" method="POST">
 			<label>NAME</label>
 			<input class="inp" type="text" name="name"><br>
 			<label>PASSWORT</label>
