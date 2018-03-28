@@ -51,7 +51,7 @@ echo <<<FORMULAR
 			<input class="inp" type="text" name="name"><br>
 			<label>PASSWORT</label>
 			<input class="inp" type="password" name="passwort"><br>
-			<input class="button" type="submit" value="Absenden"><br>
+			<input class="button" type="submit" name="submit "value="Absenden"><br>
 		</form>
 FORMULAR;
 		}
